@@ -59,15 +59,15 @@
         <view class="tab-icon">🐾</view>
         <text class="tab-text">档案</text>
       </view>
-      <view class="tab-item">
+      <view class="tab-item" @tap="navigateTo('/pages/daily-record/index')">
         <view class="tab-icon">📅</view>
         <text class="tab-text">记录</text>
       </view>
-      <view class="tab-item">
+      <view class="tab-item" @tap="navigateTo('/pages/emotion/index')">
         <view class="tab-icon">❤️</view>
         <text class="tab-text">情绪</text>
       </view>
-      <view class="tab-item">
+      <view class="tab-item" @tap="navigateTo('/pages/weekly-report/index')">
         <view class="tab-icon">📊</view>
         <text class="tab-text">周报</text>
       </view>
@@ -245,5 +245,11 @@ const navigateTo = (url) => {
 
 .tab-item.active .tab-text {
   color: #ff6b81;
+}
+
+.tab-bar .tab-item.active {
+  background-color: #fff5f8;
+  box-shadow: 0 -4rpx 10rpx rgba(0, 0, 0, 0.05);
+  position: relative;
 }
 </style>

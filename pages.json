@@ -9,7 +9,25 @@
 		{
 			"path": "pages/pet-profile/edit",
 			"style": {
-				"navigationBarTitleText": "API中心"
+				"navigationBarTitleText": "首页编辑"
+			}
+		},
+		{
+			"path": "pages/daily-record/index",
+			"style": {
+				"navigationBarTitleText": "记录"
+			}
+		},
+		{
+			"path": "pages/emotion/index",
+			"style": {
+				"navigationBarTitleText": "情绪"
+			}
+		},
+		{
+			"path": "pages/weekly-report/index",
+			"style": {
+				"navigationBarTitleText": "周报"
 			}
 		}
 	],

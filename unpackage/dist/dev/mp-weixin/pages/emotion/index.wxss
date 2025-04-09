@@ -1,0 +1,248 @@
+
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f8f8f8;
+  position: relative;
+  padding-bottom: 120rpx;
+}
+
+/* 渐变标题栏 */
+.header {
+  height: 80rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to right, #ffcdd2, #b2ebf2);
+  padding: 20rpx 0;
+}
+.header-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+/* 情绪分析标题 */
+.emotion-header {
+  padding: 30rpx;
+}
+.emotion-title {
+  font-size: 34rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+/* 输入方式选择 */
+.input-tabs {
+  display: flex;
+  background-color: #fff;
+  border-radius: 10rpx;
+  margin: 0 30rpx 20rpx;
+  overflow: hidden;
+}
+.tab-item {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 20rpx 0;
+  border-bottom: 2rpx solid transparent;
+}
+.tab-icon {
+  margin-right: 8rpx;
+  font-size: 28rpx;
+}
+.tab-text {
+  font-size: 28rpx;
+  color: #666;
+}
+.tab-item.active {
+  background-color: #f5f5f5;
+  border-bottom: 2rpx solid #e91e63;
+}
+.tab-item.active .tab-text {
+  color: #e91e63;
+}
+
+/* 输入区域 */
+.input-area {
+  background-color: #fff;
+  border-radius: 10rpx;
+  margin: 0 30rpx 20rpx;
+  padding: 20rpx;
+  min-height: 200rpx;
+}
+.text-input {
+  width: 100%;
+  height: 200rpx;
+  font-size: 28rpx;
+}
+.image-input, .audio-input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 200rpx;
+  border: 2rpx dashed #ddd;
+  border-radius: 10rpx;
+}
+.upload-icon, .record-icon {
+  font-size: 60rpx;
+  margin-bottom: 20rpx;
+  color: #999;
+}
+.upload-text, .record-text {
+  font-size: 28rpx;
+  color: #999;
+}
+
+/* 分析按钮 */
+.analyze-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f48fb1;
+  color: white;
+  padding: 20rpx 0;
+  border-radius: 10rpx;
+  margin: 0 30rpx 30rpx;
+}
+.analyze-text {
+  font-size: 30rpx;
+}
+
+/* 历史分析记录 */
+.history-section {
+  padding: 0 30rpx;
+}
+.history-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20rpx;
+  padding-bottom: 10rpx;
+  border-bottom: 1rpx solid #eee;
+}
+.history-list {
+  margin-bottom: 30rpx;
+}
+.history-item {
+  display: flex;
+  background-color: #fff;
+  border-radius: 10rpx;
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+}
+.emotion-icon {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 40rpx;
+  background-color: #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40rpx;
+  margin-right: 20rpx;
+}
+.emotion-icon.happy {
+  background-color: #c8e6c9;
+}
+.emotion-icon.anxious {
+  background-color: #ffe0b2;
+}
+.emotion-icon.sad {
+  background-color: #bbdefb;
+}
+.history-content {
+  flex: 1;
+}
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10rpx;
+}
+.emotion-name {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
+}
+.history-time {
+  font-size: 24rpx;
+  color: #999;
+}
+.intensity-bar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15rpx;
+}
+.intensity-label {
+  font-size: 24rpx;
+  color: #666;
+  margin-right: 10rpx;
+  width: 120rpx;
+}
+.progress-bar {
+  flex: 1;
+  height: 16rpx;
+  background-color: #f5f5f5;
+  border-radius: 8rpx;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background-color: #e91e63;
+  border-radius: 8rpx;
+}
+.analysis-result, .suggestion {
+  margin-bottom: 10rpx;
+}
+.result-label, .suggestion-label {
+  font-size: 26rpx;
+  color: #666;
+  font-weight: bold;
+}
+.result-text, .suggestion-text {
+  font-size: 26rpx;
+  color: #333;
+  line-height: 1.5;
+}
+
+/* 底部导航栏 */
+.tab-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100rpx;
+  display: flex;
+  background-color: #fff;
+  border-top: 1rpx solid #eee;
+}
+.tab-bar .tab-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-bottom: none;
+}
+.tab-bar .tab-icon {
+  font-size: 40rpx;
+  margin-bottom: 4rpx;
+  margin-right: 0;
+}
+.tab-bar .tab-text {
+  font-size: 24rpx;
+  color: #999;
+}
+.tab-bar .tab-item.active .tab-icon,
+.tab-bar .tab-item.active .tab-text {
+  color: #e91e63;
+}
+.tab-bar .tab-item.active {
+  background-color: #fff5f8;
+  box-shadow: 0 -4rpx 10rpx rgba(0, 0, 0, 0.05);
+  position: relative;
+}
