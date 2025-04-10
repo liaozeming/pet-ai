@@ -1,27 +1,32 @@
 {
-	"pages": [ 
-		{
-			"path": "pages/index/index",
+	"pages": [{
+			"path": "pages/login/index",
 			"style": {
-				"navigationBarTitleText": "首页"
+				"navigationBarTitleText": "登录"
+			}
+		},
+		{
+			"path": "pages/pet-profile/index",
+			"style": {
+				"navigationBarTitleText": "宠物档案"
 			}
 		},
 		{
 			"path": "pages/pet-profile/edit",
 			"style": {
-				"navigationBarTitleText": "首页编辑"
+				"navigationBarTitleText": "宠物档案编辑"
 			}
 		},
 		{
 			"path": "pages/daily-record/index",
 			"style": {
-				"navigationBarTitleText": "记录"
+				"navigationBarTitleText": "日常记录"
 			}
 		},
 		{
 			"path": "pages/emotion/index",
 			"style": {
-				"navigationBarTitleText": "情绪"
+				"navigationBarTitleText": "情绪分析"
 			}
 		},
 		{
@@ -29,11 +34,17 @@
 			"style": {
 				"navigationBarTitleText": "周报"
 			}
+		},
+		{
+			"path": "pages/my/index",
+			"style": {
+				"navigationBarTitleText": "我的"
+			}
 		}
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "uni-app",
+		"navigationBarTitleText": "宠物AI助手",
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8"
 	},

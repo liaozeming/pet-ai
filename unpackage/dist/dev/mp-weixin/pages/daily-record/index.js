@@ -71,7 +71,7 @@ const _sfc_main = {
       });
     };
     common_vendor.onLoad(() => {
-      common_vendor.index.__f__("log", "at pages/daily-record/index.vue:187", "页面加载完成");
+      common_vendor.index.__f__("log", "at pages/daily-record/index.vue:191", "页面加载完成");
     });
     return (_ctx, _cache) => {
       return {
@@ -98,9 +98,10 @@ const _sfc_main = {
             e: common_vendor.n(record.type)
           };
         }),
-        h: common_vendor.o(($event) => navigateTo("/pages/index/index")),
+        h: common_vendor.o(($event) => navigateTo("/pages/pet-profile/index")),
         i: common_vendor.o(($event) => navigateTo("/pages/emotion/index")),
-        j: common_vendor.o(($event) => navigateTo("/pages/weekly-report/index"))
+        j: common_vendor.o(($event) => navigateTo("/pages/weekly-report/index")),
+        k: common_vendor.o(($event) => navigateTo("/pages/my/index"))
       };
     };
   }

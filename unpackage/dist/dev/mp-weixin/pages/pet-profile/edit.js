@@ -35,7 +35,7 @@ const _sfc_main = {
         sizeType: ["compressed"],
         sourceType: ["album", "camera"],
         success: (res) => {
-          common_vendor.index.__f__("log", "at pages/pet-profile/edit.vue:155", res.tempFilePaths[0]);
+          common_vendor.index.__f__("log", "at pages/pet-profile/edit.vue:159", res.tempFilePaths[0]);
         }
       });
     };
@@ -52,15 +52,8 @@ const _sfc_main = {
         });
       }, 1e3);
     };
-    common_vendor.onLoad(() => {
-      try {
-        const savedPetInfo = common_vendor.index.getStorageSync("petInfo");
-        if (savedPetInfo) {
-          petInfo.value = JSON.parse(savedPetInfo);
-        }
-      } catch (e) {
-        common_vendor.index.__f__("error", "at pages/pet-profile/edit.vue:194", "获取宠物信息失败", e);
-      }
+    common_vendor.onLoad((option) => {
+      common_vendor.index.__f__("log", "at pages/pet-profile/edit.vue:191", option.id);
     });
     return (_ctx, _cache) => {
       return {
@@ -82,7 +75,11 @@ const _sfc_main = {
         p: petInfo.value.birthDate,
         q: common_vendor.o(handleDateChange),
         r: petInfo.value.weight,
-        s: common_vendor.o(($event) => petInfo.value.weight = $event.detail.value)
+        s: common_vendor.o(($event) => petInfo.value.weight = $event.detail.value),
+        t: common_vendor.o(($event) => _ctx.navigateTo("/pages/daily-record/index")),
+        v: common_vendor.o(($event) => _ctx.navigateTo("/pages/emotion/index")),
+        w: common_vendor.o(($event) => _ctx.navigateTo("/pages/weekly-report/index")),
+        x: common_vendor.o(($event) => _ctx.navigateTo("/pages/my/index"))
       };
     };
   }

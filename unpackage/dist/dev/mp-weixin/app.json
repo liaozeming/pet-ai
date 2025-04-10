@@ -1,14 +1,16 @@
 {
   "pages": [
-    "pages/index/index",
+    "pages/login/index",
+    "pages/pet-profile/index",
     "pages/pet-profile/edit",
     "pages/daily-record/index",
     "pages/emotion/index",
-    "pages/weekly-report/index"
+    "pages/weekly-report/index",
+    "pages/my/index"
   ],
   "window": {
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "uni-app",
+    "navigationBarTitleText": "宠物AI助手",
     "navigationBarBackgroundColor": "#F8F8F8",
     "backgroundColor": "#F8F8F8"
   },

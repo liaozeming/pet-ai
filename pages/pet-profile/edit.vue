@@ -86,22 +86,26 @@
     
     <!-- 底部导航栏 -->
     <view class="tab-bar">
-      <view class="tab-item active">
-        <view class="tab-icon">🐾</view>
-        <text class="tab-text">档案</text>
-      </view>
-      <view class="tab-item">
-        <view class="tab-icon">📅</view>
-        <text class="tab-text">记录</text>
-      </view>
-      <view class="tab-item">
-        <view class="tab-icon">❤️</view>
-        <text class="tab-text">情绪</text>
-      </view>
-      <view class="tab-item">
-        <view class="tab-icon">📊</view>
-        <text class="tab-text">周报</text>
-      </view>
+    	<view class="tab-item active">
+    		<view class="tab-icon">🐾</view>
+    		<text class="tab-text">档案</text>
+    	</view>
+    	<view class="tab-item" @tap="navigateTo('/pages/daily-record/index')">
+    		<view class="tab-icon">📅</view>
+    		<text class="tab-text">记录</text>
+    	</view>
+    	<view class="tab-item" @tap="navigateTo('/pages/emotion/index')">
+    		<view class="tab-icon">❤️</view>
+    		<text class="tab-text">情绪</text>
+    	</view>
+    	<view class="tab-item" @tap="navigateTo('/pages/weekly-report/index')">
+    		<view class="tab-icon">📊</view>
+    		<text class="tab-text">周报</text>
+    	</view>
+    	<view class="tab-item"  @tap="navigateTo('/pages/my/index')">
+    	  <view class="tab-icon">👤</view>
+    	  <text class="tab-text">我的</text>
+    	</view>
     </view>
   </view>
 </template>
@@ -183,17 +187,10 @@ const handleSave = () => {
 };
 
 // 生命周期钩子
-onLoad(() => {
-  // 从本地存储获取宠物信息
-  try {
-    const savedPetInfo = uni.getStorageSync('petInfo');
-    if (savedPetInfo) {
-      petInfo.value = JSON.parse(savedPetInfo);
-    }
-  } catch (e) {
-    console.error('获取宠物信息失败', e);
-  }
+onLoad((option) => {
+  console.log(option.id)
 });
+
 </script>
 
 <style>

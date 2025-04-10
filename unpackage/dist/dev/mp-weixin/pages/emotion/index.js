@@ -37,7 +37,7 @@ const _sfc_main = {
         sizeType: ["compressed"],
         sourceType: ["album", "camera"],
         success: (res) => {
-          common_vendor.index.__f__("log", "at pages/emotion/index.vue:165", res.tempFilePaths[0]);
+          common_vendor.index.__f__("log", "at pages/emotion/index.vue:169", res.tempFilePaths[0]);
         }
       });
     };
@@ -49,7 +49,7 @@ const _sfc_main = {
         isRecording.value = true;
         common_vendor.index.startRecord({
           success: (res) => {
-            common_vendor.index.__f__("log", "at pages/emotion/index.vue:180", res.tempFilePath);
+            common_vendor.index.__f__("log", "at pages/emotion/index.vue:184", res.tempFilePath);
             isRecording.value = false;
           }
         });
@@ -100,7 +100,7 @@ const _sfc_main = {
       });
     };
     common_vendor.onLoad(() => {
-      common_vendor.index.__f__("log", "at pages/emotion/index.vue:252", "情绪分析页面加载完成");
+      common_vendor.index.__f__("log", "at pages/emotion/index.vue:256", "情绪分析页面加载完成");
     });
     return (_ctx, _cache) => {
       return common_vendor.e({
@@ -137,9 +137,10 @@ const _sfc_main = {
             h: index
           };
         }),
-        k: common_vendor.o(($event) => navigateTo("/pages/index/index")),
+        k: common_vendor.o(($event) => navigateTo("/pages/pet-profile/index")),
         l: common_vendor.o(($event) => navigateTo("/pages/daily-record/index")),
-        m: common_vendor.o(($event) => navigateTo("/pages/weekly-report/index"))
+        m: common_vendor.o(($event) => navigateTo("/pages/weekly-report/index")),
+        n: common_vendor.o(($event) => navigateTo("/pages/my/index"))
       });
     };
   }

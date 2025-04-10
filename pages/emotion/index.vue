@@ -88,7 +88,7 @@
     
     <!-- 底部导航栏 -->
     <view class="tab-bar">
-      <view class="tab-item" @tap="navigateTo('/pages/index/index')">
+      <view class="tab-item" @tap="navigateTo('/pages/pet-profile/index')">
         <view class="tab-icon">🐾</view>
         <text class="tab-text">档案</text>
       </view>
@@ -104,6 +104,10 @@
         <view class="tab-icon">📊</view>
         <text class="tab-text">周报</text>
       </view>
+	  <view class="tab-item"  @tap="navigateTo('/pages/my/index')">
+	    <view class="tab-icon">👤</view>
+	    <text class="tab-text">我的</text>
+	  </view>
     </view>
   </view>
 </template>
