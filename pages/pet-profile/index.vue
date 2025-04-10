@@ -75,9 +75,9 @@
 				<view class="tab-icon">📊</view>
 				<text class="tab-text">周报</text>
 			</view>
-			<view class="tab-item"  @tap="navigateTo('/pages/my/index')">
-			  <view class="tab-icon">👤</view>
-			  <text class="tab-text">我的</text>
+			<view class="tab-item" @tap="navigateTo('/pages/my/index')">
+				<view class="tab-icon">👤</view>
+				<text class="tab-text">我的</text>
 			</view>
 		</view>
 	</view>
@@ -85,10 +85,22 @@
 
 <script setup>
 	import {
-		ref
-	} from 'vue';
+		ref,
+		onMounted
+	} from 'vue'
+	import {
+		useUserStore
+	} from '../../stores/user'
 	// import uni from '@dcloudio/uni-app';
 
+	const userStore = useUserStore()
+	const userInfo = ref(null)
+
+
+	onMounted(() => {
+		userInfo.value = userStore.userInfo
+		console.log('用户信息:', userInfo.value.username)
+	})
 	// 响应式数据
 	const petInfo = ref({
 		id: 1,

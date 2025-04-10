@@ -181,7 +181,7 @@ const handleSave = () => {
     //   url: '/pages/index/index'
     // });
 	uni.navigateTo({
-		url: '/pages/index/index'
+		url: '/pages/pet-profile/index'
 	})
   }, 1000);
 };

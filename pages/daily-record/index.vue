@@ -1,15 +1,18 @@
 <template>
   <view class="container">
     <!-- 顶部导航栏 -->
-    <view class="nav-bar">
+<!--    <view class="nav-bar">
       <view class="back-btn" @tap="goBack">
         <text class="back-icon">←</text>
       </view>
       <text class="page-title">记录</text>
-    </view>
+    </view> -->
     
     <!-- 渐变标题栏 -->
     <view class="header">
+		<view class="back-btn" @tap="goBack">
+		  <text class="back-icon">←</text>
+		</view>
       <text class="header-title">宠物AI助手</text>
     </view>
     
