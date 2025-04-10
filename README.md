@@ -7,7 +7,7 @@
 
 2.点击运行即可
 
-![1744283304976](.\static\img\1744283304976.jpg)
+![运行](https://git.nju.edu.cn/liaozeming/pet-ai/-/raw/main/static/img/1744283304976.jpg?ref_type=heads)
 
 3.如果是小程序需要下载微信开发者工具
 
@@ -57,11 +57,13 @@ pages.json   页面注册
 
 ## 前端页面
 
-![logined](.\static\img\logined.jpg)
+![日常记录](https://git.nju.edu.cn/liaozeming/pet-ai/-/raw/main/static/img/logined.jpg?ref_type=heads)
+
+
 
  
 
-![login](.\static\img\login.jpg)
+![login](https://git.nju.edu.cn/liaozeming/pet-ai/-/raw/main/static/img/login.jpg?ref_type=heads)
 
 
 
@@ -81,7 +83,7 @@ pages.json   页面注册
 
 [前端api demo](https://git.nju.edu.cn/liaozeming/app-api-demo)
 
-![apiDemo](.\static\img\apiDemo.jpg)
+![apiDemo](https://git.nju.edu.cn/liaozeming/pet-ai/-/raw/main/static/img/apiDemo.jpg?ref_type=heads)
 
 api/index.js
 
