@@ -1,0 +1,145 @@
+{
+	"info": {
+		"_postman_id": "199a736c-9536-4ec5-9e43-db5317943498",
+		"name": "pet.py",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "43983893"
+	},
+	"item": [
+		{
+			"name": "创建新宠物",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user_id\": \"user123\",\r\n    \"name\": \"球球\",\r\n    \"type\": \"猫\",\r\n    \"breed\": \"英国短毛猫\",\r\n    \"birth_date\": \"2020-05-15\",\r\n    \"gender\": \"公\",\r\n    \"weight\": 4.5,\r\n    \"avatar_url\": \"https://example.com/pet_avatar.jpg\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/pets",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"pets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "删除宠物",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user_id\": \"user123\",\r\n    \"name\": \"球球\",\r\n    \"type\": \"猫\",\r\n    \"breed\": \"英国短毛猫\",\r\n    \"birth_date\": \"2020-05-15\",\r\n    \"gender\": \"公\",\r\n    \"weight\": 4.5,\r\n    \"avatar_url\": \"https://example.com/pet_avatar.jpg\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/pets",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"pets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "更新宠物信息",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"New Buddy\",\r\n    \"weight\": 28.0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/pets/73fc416a-4b6a-4db6-96f3-f81800ef6cb4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"pets",
+						"73fc416a-4b6a-4db6-96f3-f81800ef6cb4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "获取宠物列表，可选按用户ID筛选",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/pets?user_id=123",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"pets"
+					],
+					"query": [
+						{
+							"key": "user_id",
+							"value": "123"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "根据ID获取宠物详情",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/pets/73fc416a-4b6a-4db6-96f3-f81800ef6cb4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"pets",
+						"73fc416a-4b6a-4db6-96f3-f81800ef6cb4"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

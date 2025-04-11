@@ -8,7 +8,7 @@
 		<!-- 宠物档案区域 -->
 		<view class="profile-header">
 			<text class="profile-title">宠物档案</text>
-			<navigator :url="'/pages/pet-profile/edit?id=' + petInfo.id" open-type="redirect"
+			<navigator :url="'/pages/pet-profile/edit?pet_id=' + petInfo.id" open-type="navigate"
 				hover-class="other-navigator-hover">
 				<view class="edit-button">
 					<text class="edit-icon">✎</text>
@@ -93,25 +93,53 @@
 	} from '../../stores/user'
 	// import uni from '@dcloudio/uni-app';
 
+	import {
+		petsApi
+	} from '@/api/pets.js'
+
 	const userStore = useUserStore()
 	const userInfo = ref(null)
 
-
+	// 响应式数据
+	const petInfo = ref();
 	onMounted(() => {
 		userInfo.value = userStore.userInfo
 		console.log('用户信息:', userInfo.value.username)
+		// 查询是否用户有宠物信息
+		getPetByUserId()
 	})
-	// 响应式数据
-	const petInfo = ref({
-		id: 1,
-		name: '豆豆1',
-		type: '猫',
-		breed: '英短',
-		gender: '男',
-		birthDate: '2022-05-15',
-		weight: '4.5 kg',
-		img: "https://n.sinaimg.cn/sinakd20116/160/w1440h1920/20231215/cf0e-e50a1b5a6503ef01228d42b14f51dcb3.jpg"
-	});
+
+
+	const getPetByUserId = () => {
+		petsApi.getPetByUserId({
+			user_id: 123
+		}).then(res => {
+			console.log("res:", res)
+
+			const petData = res.data[0]
+			console.log("宠物信息:", petData)
+
+			// 将返回的数据赋值给petInfo
+			petInfo.value = {
+				id: petData.pet_id,
+				name: petData.name,
+				type: petData.type,
+				breed: petData.breed,
+				gender: petData.gender,
+				birthDate: petData.birth_date,
+				weight: petData.weight + ' kg',
+				img: petData.avatar_url
+			}
+		}).catch(err => {
+			console.error("请求错误:", err)
+			uni.showToast({
+				title: '查询失败',
+				icon: 'none'
+			})
+		})
+	}
+
+
 
 	const navigateTo = (url) => {
 		uni.navigateTo({
