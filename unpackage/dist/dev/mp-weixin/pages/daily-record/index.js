@@ -71,7 +71,7 @@ const _sfc_main = {
       });
     };
     common_vendor.onLoad(() => {
-      common_vendor.index.__f__("log", "at pages/daily-record/index.vue:191", "页面加载完成");
+      common_vendor.index.__f__("log", "at pages/daily-record/index.vue:194", "页面加载完成");
     });
     return (_ctx, _cache) => {
       return {

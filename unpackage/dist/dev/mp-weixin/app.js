@@ -2,6 +2,7 @@
 Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
 const common_vendor = require("./common/vendor.js");
 require("./stores/user.js");
+const utils_routerGuard = require("./utils/router-guard.js");
 if (!Math) {
   "./pages/login/index.js";
   "./pages/pet-profile/index.js";
@@ -13,13 +14,15 @@ if (!Math) {
 }
 const _sfc_main = {
   onLaunch: function() {
-    common_vendor.index.__f__("log", "at App.vue:33", "App Launch");
+    common_vendor.index.__f__("log", "at App.vue:31", "App Launch");
+    utils_routerGuard.setupRouterGuard();
   },
   onShow: function() {
-    common_vendor.index.__f__("log", "at App.vue:36", "App Show");
+  },
+  onLoad: function() {
   },
   onHide: function() {
-    common_vendor.index.__f__("log", "at App.vue:39", "App Hide");
+    common_vendor.index.__f__("log", "at App.vue:62", "App Hide");
   }
 };
 function createApp() {

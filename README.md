@@ -276,6 +276,15 @@ const handleGetList = () => {
 vue中 获取用户信息
 
 ```
+import {
+	ref,
+	onMounted
+} from 'vue'
+import {
+	useUserStore
+} from '../../stores/user'
+
+
 const userStore = useUserStore()
 const userInfo = ref(null)
 

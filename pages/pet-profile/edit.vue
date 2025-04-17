@@ -17,14 +17,14 @@
 		<view class="pet-info-header">
 			<view class="avatar-container" @tap="chooseImage">
 				<view class="avatar">
-					<!-- 这里可以放置实际的宠物头像 -->
-					<view class="camera-icon">
+					<image v-if="petImgShow" class="avatar-image" :src="petImgShow" mode="aspectFill"></image>
+					<view v-else class="camera-icon">
 						<text class="icon">📷</text>
 					</view>
 				</view>
 			</view>
 			<view class="pet-name">{{ petInfo.name }}</view>
-			<view class="pet-breed">猫 · 英短</view>
+			<view class="pet-breed"> {{ petInfo.type }} · {{petInfo.breed}}</view>
 		</view>
 
 		<!-- 宠物详细信息表单 -->
@@ -120,15 +120,21 @@
 		onLoad
 	} from '@dcloudio/uni-app';
 	import {
-		petsApi
+		petsApi,
+		AVATAR_BASE_URL
 	} from '@/api/pets.js'
 
+import {useUserStore} from '../../stores/user'
+
+
+const userStore = useUserStore()
+const userInfo = ref(null)
 	// 响应式数据
 	const petInfo = ref({
 		name: '',
-		type: '猫', // 设置默认值
+		type: '', // 设置默认值
 		breed: '',
-		gender: '公', // 设置默认值
+		gender: '', // 设置默认值
 		birthDate: '',
 		weight: ''
 	});
@@ -140,6 +146,9 @@
 	const genders = ['公', '母'];
 	const genderIndex = ref(0); // 改为ref类型
 	const petId = ref()
+	const petImgShow = ref()
+	
+	
 	// 方法
 	const formatDate = (dateStr) => {
 		if (!dateStr) return '';
@@ -167,13 +176,37 @@
 			count: 1,
 			sizeType: ['compressed'],
 			sourceType: ['album', 'camera'],
-			success: (res) => {
-				// 这里可以处理选择的图片
-				console.log(res.tempFilePaths[0]);
-				// 实际应用中可能需要上传图片到服务器
+			success: async (res) => {
+				const tempFilePath = res.tempFilePaths[0]
+				try {
+					// 显示加载提示
+					uni.showLoading({
+						title: '上传中...'
+					})
+					
+					// 上传图片
+					const uploadRes = await petsApi.uploadAvatar(petId.value? petId.value:'9446eb11-32b3-4425-aa4c-2a4a4c937620' ,tempFilePath)
+					
+					// 更新宠物信息中的图片URL
+					petImgShow.value = AVATAR_BASE_URL + uploadRes.avatar_url
+					petInfo.value.img =  uploadRes.avatar_url
+			
+					uni.hideLoading()
+					uni.showToast({
+						title: '上传成功',
+						icon: 'success'
+					})
+				} catch (err) {
+					uni.hideLoading()
+					uni.showToast({
+						title: '上传失败',
+						icon: 'error'
+					})
+					console.error('上传失败:', err)
+				}
 			}
-		});
-	};
+		})
+	}
 
 	const navigateTo = (url) => {
 		uni.navigateTo({
@@ -183,7 +216,14 @@
 
 	const handleSave = () => {
 		// 这里可以添加表单验证逻辑
-		updatePet(petId.value)
+		console.log(petId.value)
+		console.log("typeof petId.value  !== 'undefined' :", typeof petId.value !== 'undefined')
+		if (typeof petId.value !== 'undefined' && petId.value !== null) {
+			updatePet(petId.value)
+		} else {
+			savePet()
+		}
+
 
 		//  // 保存宠物信息到本地存储
 		//  uni.setStorageSync('petInfo', JSON.stringify(petInfo.value));
@@ -205,21 +245,47 @@
 	const getPetByUserId = (pet_id) => {
 		petsApi.getPetByPetId(pet_id).then(res => {
 			console.log("res:", res)
-			console.log("res:", res.data)
+			console.log("res.data:", res.data)
+
+			// 检查res.data是否存在且不为空
+			if (!res || !res.data) {
+				console.log("未获取到宠物数据")
+				uni.showToast({
+					title: '未找到宠物信息',
+					icon: 'none'
+				})
+				return
+			}
+
 			const petData = res.data
+			// 检查petData是否包含必要的字段
+			if (!petData.pet_id || !petData.name) {
+				console.log("宠物数据不完整")
+				uni.showToast({
+					title: '宠物信息不完整',
+					icon: 'none'
+				})
+				return
+			}
+
+			// 数据完整，进行赋值
 			petInfo.value = {
 				id: petData.pet_id,
 				name: petData.name,
-				type: petData.type,
-				breed: petData.breed,
-				gender: petData.gender,
-				birthDate: petData.birth_date,
-				weight: petData.weight,
-				img: petData.avatar_url
+				type: petData.type || '猫', // 设置默认值
+				breed: petData.breed || '', // 设置默认值
+				gender: petData.gender || '公', // 设置默认值
+				birthDate: petData.birth_date || '',
+				weight: petData.weight || '',
+				img: petData.avatar_url || ''
 			}
+			
+			petImgShow.value = AVATAR_BASE_URL + petInfo.value.img || ''
+
 			// 设置选择器的初始值
-			typeIndex.value = petTypes.indexOf(petData.type);
-			genderIndex.value = genders.indexOf(petData.gender);
+			typeIndex.value = petTypes.indexOf(petData.type) >= 0 ? petTypes.indexOf(petData.type) : 0
+			genderIndex.value = genders.indexOf(petData.gender) >= 0 ? genders.indexOf(petData.gender) : 0
+
 		}).catch(err => {
 			console.error("请求错误:", err)
 			uni.showToast({
@@ -229,8 +295,33 @@
 		})
 	}
 
+	const savePet = () => {
+		petsApi.savePet( {
+			user_id: userInfo.value.username,
+			name: petInfo.value.name,
+			type: petInfo.value.type,
+			breed: petInfo.value.breed,
+			gender: petInfo.value.gender,
+			birth_date: petInfo.value.birthDate,
+			weight: parseFloat(petInfo.value.weight),
+			avatar_url: petInfo.value.img
+		}).then(res => {
+			uni.showToast({
+				title: '保存成功',
+				icon: 'success'
+			})
+		}).catch(err => {
+			uni.showToast({
+				title: '保存失败',
+				icon: 'error'
+			})
+		})
+		
+	}
+
 	const updatePet = (pet_Id) => {
 		petsApi.updatePet(pet_Id, {
+			user_id: userInfo.value.username,
 			name: petInfo.value.name,
 			type: petInfo.value.type,
 			breed: petInfo.value.breed,
@@ -253,9 +344,18 @@
 
 	// 生命周期钩子  路由跳转获取id
 	onLoad((option) => {
-		getPetByUserId(option.pet_id)
-		petId.value = option.pet_id
+		userInfo.value = userStore.userInfo
+		console.log('用户信息edit:', userInfo.value.username)
+		if (option.pet_id !== 'undefined' && option.pet_id !== null) {
+			getPetByUserId(option.pet_id)
+			petId.value = option.pet_id
+		}
 	});
+
+	// onMounted(() => {
+	//     userInfo.value = userStore.userInfo
+	//     console.log('用户信息edit:', userInfo.value.username)
+	// })
 </script>
 
 <style>
@@ -332,6 +432,12 @@
 		justify-content: center;
 		align-items: center;
 		position: relative;
+	}
+
+	.avatar-image {
+		width: 100%;
+		height: 100%;
+		border-radius: 50%;
 	}
 
 	.camera-icon {
